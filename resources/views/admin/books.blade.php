@@ -92,7 +92,7 @@
 
 
                                 @elseif($book->status == 'unavailable')
-                                    <a href="/admin/{{$book->id}}/availableBook" class='btn btn-success btn-xs'>Book Returned<i
+                                    <a href="/admin/{{$book->id}}/availableBook" class='btn btn-success btn-xs'><i
                                                 class="glyphicon glyphicon-ok"></i></a>
 
                                 @endif

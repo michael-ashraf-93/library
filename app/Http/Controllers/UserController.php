@@ -175,24 +175,32 @@ class UserController extends Controller
     {
         if (auth()->user()->id == $uid) {
             $borrow = Borrow::where('book_id',$bid)->get();
+            $book = Book::where('id',$bid)->get();
+
 
             if (count($borrow)) {
                 Flash::error('Book Is Already Borrowed');
 
                 return redirect()->back();
-            } else
-                $book = Book::find($bid);
-            Borrow::create([
-                'user_id' => $uid,
-                'book_id' => $bid,
-                'book_name' => $book->book_name,
-                'borrow_at' => Carbon::now(),
-                'expires_at' => Carbon::now()->addWeek(1)
-            ]);
-            Flash::success('Book Is Borrowed');
-            Book::where('id', $bid)->update(['status' => 'unavailable']);
+            } else {
+                foreach ($book as $book) {
+                    if ($book->status == 'available') {
+                        Borrow::create([
+                            'user_id' => $uid,
+                            'book_id' => $bid,
+                            'book_name' => $book->book_name,
+                            'borrow_at' => Carbon::now(),
+                            'expires_at' => Carbon::now()->addWeek(1)
+                        ]);
+                        Flash::success('Book Is Borrowed');
+                        Book::where('id', $bid)->update(['status' => 'unavailable']);
+                    } else {
+                        Flash::error('Book Is Not Available');
 
-            return redirect()->back();
+                    }
+                }
+                return redirect()->back();
+            }
         } else
             return redirect()->back();
     }
