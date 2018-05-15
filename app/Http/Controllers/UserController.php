@@ -174,9 +174,9 @@ class UserController extends Controller
     public function borrowBook($uid, $bid)
     {
         if (auth()->user()->id == $uid) {
-            $borrow = Borrow::find($bid);
+            $borrow = Borrow::where('book_id',$bid)->get();
 
-            if (isset($borrow)) {
+            if (count($borrow)) {
                 Flash::error('Book Is Already Borrowed');
 
                 return redirect()->back();

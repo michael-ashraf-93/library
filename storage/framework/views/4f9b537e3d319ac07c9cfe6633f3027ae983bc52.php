@@ -5,13 +5,7 @@
 
     <section class="content-header">
         <h1 class="pull-left">Borrows : </h1>
-        
-        
-        
-        
-        
-        
-        
+
         <h1 class="pull-right">
         </h1>
     </section>

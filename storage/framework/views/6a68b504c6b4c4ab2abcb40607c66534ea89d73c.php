@@ -5,13 +5,7 @@
 
     <section class="content-header">
         <h1 class="pull-left">Books :</h1>
-        
-            
-            
-            
-            
-            
-        
+
         <h1 class="pull-right">
             <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="/admin/create/book">Add
                 New Book</a>
@@ -87,9 +81,6 @@
 
                                 <a href="/admin/<?php echo e($book->id); ?>/editBook" class='btn btn-default btn-xs'><i
                                             class="glyphicon glyphicon-edit"></i></a>
-
-                                
-                                            
 
 
                                 <?php if($book->status == 'available'): ?>
